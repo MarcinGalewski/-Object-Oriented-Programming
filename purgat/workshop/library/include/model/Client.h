@@ -6,6 +6,7 @@
 #define CARRENTAL_CLIENT_H
 
 #include "string"
+#include "model/Address.h"
 
 
 class Client {
@@ -13,12 +14,14 @@ private:
     std::string firstName;
     std::string lastName;
     std::string personalId;
+    Address *address;
 
 public:
-    Client(const std::string &firstName, const std::string &lastName, const std::string &personalId);
+    Client(const std::string &firstName, const std::string &lastName, const std::string &personalId, Address *address);
+
     virtual ~Client();
 
-    std::string getClientInfo();
+    std::string getClientInfo() const;
 
     const std::string &getFirstName() const;
 
@@ -26,9 +29,13 @@ public:
 
     const std::string &getPersonalId() const;
 
+    Address *getAddress() const;
+
     void setFirstName(const std::string &firstName);
 
     void setLastName(const std::string &lastName);
+
+    void setAddress(Address *address);
 
 
 };

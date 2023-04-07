@@ -4,17 +4,15 @@
 using namespace std;
 
 int main() {
-    Client first("Leon", "Zakrzewski", "010101"); // constructs and destructs
-    Client* second = new Client("Judyta", "Kozlowska", "111111"); // just constructs
+    string fname1 = "Jon";
+    Client c(fname1, "Arbuckle", "0123456789", nullptr);
+    fname1.assign("Doc Boy");
+    cout << c.getFirstName() << endl;
 
-    cout << first.getClientInfo() << endl;
-    cout << second->getClientInfo() << endl;
+    string fname2 = "Garfield";
+    c.setFirstName(fname2);
+    fname2.assign("Liz");
+    cout << c.getFirstName() << endl;
 
-    first.setFirstName("");
-
-    cout << first.getClientInfo() << endl;
-
-
-    delete second;
     return 0;
 }
