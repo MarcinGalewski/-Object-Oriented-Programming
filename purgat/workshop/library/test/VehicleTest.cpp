@@ -10,9 +10,6 @@ struct TestSuiteVehicleFixture {
 
     const std::string plateNumber2 = "EL 1111";
     const unsigned int basePrice2 = 200;
-
-
-
 };
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteVehicle, TestSuiteVehicleFixture)
@@ -21,6 +18,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteVehicle, TestSuiteVehicleFixture)
         Vehicle vehicle(plateNumber1, basePrice1);
         BOOST_TEST(vehicle.getPlateNumber() == plateNumber1);
         BOOST_TEST(vehicle.getBasePrice() == basePrice1);
+        BOOST_TEST(vehicle.isRented() == false);
     }
 
     BOOST_AUTO_TEST_CASE(vehicleSetPlateNumberTest_Positive){

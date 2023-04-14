@@ -7,7 +7,9 @@ set(SOURCE_FILES
         src/model/Address.cpp
         include/model/Address.h
         src/model/Vehicle.cpp
-        include/model/Vehicle.h src/model/Rent.cpp include/model/Rent.h)
+        include/model/Vehicle.h
+        src/model/Rent.cpp
+        include/model/Rent.h)
 
 #Utwórz bibliotekę typu STATIC, SHARED albo MODULE ze wskazanych źródeł
 add_library(Library ${SOURCE_FILES})
@@ -27,7 +29,8 @@ set(SOURCE_TEST_FILES
         test/master.cpp
         test/ClientTest.cpp
         test/AddressTest.cpp
-        test/VehicleTest.cpp) # tu w przyszłości będą dodawane pliki źródłowe testów
+        test/VehicleTest.cpp
+        test/RentTest.cpp) # tu w przyszłości będą dodawane pliki źródłowe testów
 
 add_executable (LibraryTest ${SOURCE_TEST_FILES})
 

@@ -61,4 +61,16 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
         BOOST_TEST(client.getLastName() == testLastName1);
     }
 
+    BOOST_AUTO_TEST_CASE(clientSetAddressTest_Positive) {
+        Client client(testFirstName1, testLastName1, testPersonalID1, testAddress1);
+        client.setAddress(testAddress2);
+        BOOST_TEST(client.getAddress() == testAddress2);
+    }
+
+    BOOST_AUTO_TEST_CASE(clientSetAddressTest_Negative) {
+        Client client(testFirstName1, testLastName1, testPersonalID1, testAddress1);
+        client.setAddress(nullptr);
+        BOOST_TEST(client.getAddress() == testAddress1);
+    }
+
 BOOST_AUTO_TEST_SUITE_END()
