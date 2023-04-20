@@ -12,7 +12,7 @@ Vehicle::~Vehicle() {
 }
 
 std::string Vehicle::getVehicleInfo() const {
-    return "Vehicle: " + plateNumber + ", base price: " + std::to_string(basePrice);
+    return "plate number: " + plateNumber + ", base price: " + std::to_string(basePrice);
 }
 
 const std::string &Vehicle::getPlateNumber() const {

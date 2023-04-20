@@ -5,7 +5,7 @@
 
 #include "model/Rent.h"
 
-Rent::Rent(unsigned int id, Client *client, Vehicle *vehicle, const pt::ptime &beginTime)
+Rent::Rent(unsigned int id, ClientPtr client, VehiclePtr vehicle, const pt::ptime &beginTime)
 : id(id), client(client), vehicle(vehicle), beginTime(beginTime) {
     client->addRent(this);
     vehicle->setRented(true);
@@ -19,10 +19,10 @@ Rent::~Rent() {
 
 std::string Rent::getRentInfo() const {
     std::stringstream beginTimeString;
-    beginTimeString << getBeginTime();
+    beginTimeString << beginTime;
 
     std::stringstream endTimeString;
-    endTimeString << getEndTime();
+    endTimeString << endTime;
 
     return "Rent: \n" + std::to_string(id) +
     " begin time: " + beginTimeString.str() + " end time: " + endTimeString.str() + "\n"
@@ -33,11 +33,11 @@ unsigned int Rent::getId() const {
     return id;
 }
 
-Client *Rent::getClient() const {
+ClientPtr Rent::getClient() const {
     return client;
 }
 
-Vehicle *Rent::getVehicle() const {
+VehiclePtr Rent::getVehicle() const {
     return vehicle;
 }
 

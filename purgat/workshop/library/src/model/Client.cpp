@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Client::Client(const string &firstName, const string &lastName, const string &personalId, Address *address) :
+Client::Client(const string &firstName, const string &lastName, const string &personalId, AddressPtr address) :
 firstName(firstName), lastName(lastName), personalId(personalId), address(address) {}
 
 Client::~Client() {}
@@ -14,7 +14,7 @@ Client::~Client() {}
 std::string Client::getClientInfo() const{
 
     return "Client: " + firstName + " " + lastName + ", id: " + personalId
-    + ", \n" + address->getAddressInfo();
+    + ", " + address->getAddressInfo();
 }
 
 std::string Client::getFullClientInfo() const {
@@ -38,11 +38,11 @@ const string &Client::getPersonalId() const {
     return personalId;
 }
 
-Address *Client::getAddress() const {
+AddressPtr Client::getAddress() const {
     return address;
 }
 
-std::vector<Rent *> &Client::getCurrentRents(){
+std::vector<RentPtr> &Client::getCurrentRents(){
     return currentRents;
 }
 
@@ -56,12 +56,12 @@ void Client::setLastName(const string &lastName) {
     Client::lastName = lastName;
 }
 
-void Client::setAddress(Address *address) {
+void Client::setAddress(AddressPtr address) {
     if(address)
     Client::address = address;
 }
 
-void Client::addRent(Rent *rent) {
+void Client::addRent(RentPtr rent) {
 currentRents.push_back(rent);
 }
 

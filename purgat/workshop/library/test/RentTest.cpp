@@ -14,9 +14,9 @@ struct TestSuiteRentFixture {
     pt::ptime testTime4 = pt::ptime(gr::date(2023, 1, 2), pt::hours(12) + pt::minutes(31));// 24 hours 1 minute
 
 
-    Address *testAddress;
-    Client *testClient;
-    Vehicle *testVehicle;
+    AddressPtr testAddress;
+    ClientPtr testClient;
+    VehiclePtr testVehicle;
 
     TestSuiteRentFixture() {
         testAddress = new Address("London", "Accacia Avenue", "22");

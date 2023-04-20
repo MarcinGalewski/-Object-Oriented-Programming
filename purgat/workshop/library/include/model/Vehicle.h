@@ -8,9 +8,11 @@
 #include "string"
 
 class Vehicle {
+protected:
+    unsigned int basePrice;
+
 private:
     std::string plateNumber;
-    unsigned int basePrice;
     bool rented = false;
 
 public:
@@ -18,7 +20,7 @@ public:
 
     virtual ~Vehicle();
 
-    std::string getVehicleInfo() const;
+    virtual std::string getVehicleInfo() const;
 
     const std::string &getPlateNumber() const;
 

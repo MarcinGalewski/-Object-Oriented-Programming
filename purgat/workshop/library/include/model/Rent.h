@@ -8,6 +8,7 @@
 #include "string"
 #include <boost/date_time.hpp>
 
+#include "typedefs.h"
 #include "model/Client.h"
 #include "model/Vehicle.h"
 
@@ -18,14 +19,14 @@ class  Client;
 class Rent {
 private:
     unsigned int id;
-    Client* client;
-    Vehicle* vehicle;
+    ClientPtr client;
+    VehiclePtr vehicle;
     pt::ptime beginTime;
     pt::ptime endTime;
     unsigned int rentCost = 0;
 
 public:
-    Rent(unsigned int id, Client *client, Vehicle *vehicle, const pt::ptime &beginTime);
+    Rent(unsigned int id, ClientPtr client, VehiclePtr vehicle, const pt::ptime &beginTime);
 
     virtual ~Rent();
 
@@ -33,9 +34,9 @@ public:
 
     unsigned int getId() const;
 
-    Client *getClient() const;
+    ClientPtr getClient() const;
 
-    Vehicle *getVehicle() const;
+    VehiclePtr getVehicle() const;
 
     const pt::ptime &getBeginTime() const;
 
@@ -44,7 +45,6 @@ public:
     unsigned int getRentDays() const;
 
     unsigned int getRentCost() const;
-
 
     void endRent(pt::ptime endTime);
 };

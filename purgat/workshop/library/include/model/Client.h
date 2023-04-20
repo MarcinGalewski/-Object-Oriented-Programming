@@ -7,6 +7,8 @@
 
 #include "string"
 #include "vector"
+
+#include "typedefs.h"
 #include "model/Address.h"
 #include "model/Rent.h"
 
@@ -17,11 +19,11 @@ private:
     std::string firstName;
     std::string lastName;
     std::string personalId;
-    Address *address;
-    std::vector<Rent*> currentRents;
+    AddressPtr address;
+    std::vector<RentPtr> currentRents;
 
 public:
-    Client(const std::string &firstName, const std::string &lastName, const std::string &personalId, Address *address);
+    Client(const std::string &firstName, const std::string &lastName, const std::string &personalId, AddressPtr address);
 
     virtual ~Client();
 
@@ -35,17 +37,17 @@ public:
 
     const std::string &getPersonalId() const;
 
-    Address *getAddress() const;
+    AddressPtr getAddress() const;
 
-    std::vector<Rent *> &getCurrentRents();
+    std::vector<RentPtr> &getCurrentRents();
 
     void setFirstName(const std::string &firstName);
 
     void setLastName(const std::string &lastName);
 
-    void setAddress(Address *address);
+    void setAddress(AddressPtr address);
 
-    void addRent( Rent * rent);
+    void addRent(RentPtr rent);
 
 };
 

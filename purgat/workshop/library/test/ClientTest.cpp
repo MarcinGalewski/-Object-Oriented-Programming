@@ -12,8 +12,8 @@ struct TestSuiteClientFixture {
     const std::string testFirstName2 = "Judyta";
     const std::string testLastName2= "Kozlowska";
 
-    Address *testAddress1;
-    Address *testAddress2;
+    AddressPtr testAddress1;
+    AddressPtr testAddress2;
 
     TestSuiteClientFixture() {
         testAddress1 = new Address("London", "Accacia Avenue", "22");
