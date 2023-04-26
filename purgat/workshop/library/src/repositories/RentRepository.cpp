@@ -6,13 +6,7 @@
 
 RentRepository::RentRepository() {}
 
-RentRepository::~RentRepository() {
-    for(std::vector<RentPtr>::iterator i = rentRepository.begin(); i != rentRepository.end();){
-        RentPtr r = *i;
-        delete r;
-        rentRepository.erase(i);
-    }
-}
+RentRepository::~RentRepository() {}
 
 RentPtr RentRepository::get(unsigned int index) const {
     if(index >= size())

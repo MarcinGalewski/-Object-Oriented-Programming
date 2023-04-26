@@ -6,24 +6,15 @@
 
 using namespace std;
 
-Client::Client(const string &firstName, const string &lastName, const string &personalId, AddressPtr address) :
-firstName(firstName), lastName(lastName), personalId(personalId), address(address) {}
+Client::Client(const string &firstName, const string &lastName, const string &personalId, AddressPtr address, ClientTypePtr clientType) :
+firstName(firstName), lastName(lastName), personalId(personalId), address(address), clientType(clientType) {}
 
 Client::~Client() {}
 
 std::string Client::getClientInfo() const{
 
     return "Client: " + firstName + " " + lastName + ", id: " + personalId
-    + ", " + address->getAddressInfo();
-}
-
-std::string Client::getFullClientInfo() const {
-    string allRents;
-    for(int i = 0; i < currentRents.size(); i++){
-        allRents += currentRents[i]->getRentInfo() + "\n";
-    }
-
-    return getClientInfo() + "\n" + allRents;
+    + ", " + address->getAddressInfo() + ", " + clientType->getTypeInfo();
 }
 
 const string &Client::getFirstName() const {
@@ -42,8 +33,8 @@ AddressPtr Client::getAddress() const {
     return address;
 }
 
-std::vector<RentPtr> &Client::getCurrentRents(){
-    return currentRents;
+unsigned int Client::getMaxVehicles() const {
+    return clientType->getMaxVehicles();
 }
 
 void Client::setFirstName(const string &firstName) {
@@ -61,9 +52,12 @@ void Client::setAddress(AddressPtr address) {
     Client::address = address;
 }
 
-void Client::addRent(RentPtr rent) {
-currentRents.push_back(rent);
+void Client::setClientType(ClientTypePtr clientType) {
+    if(clientType)
+    Client::clientType = clientType;
 }
 
-
+double Client::applyDiscount(double price) const {
+    return clientType->applyDiscount(price);
+}
 

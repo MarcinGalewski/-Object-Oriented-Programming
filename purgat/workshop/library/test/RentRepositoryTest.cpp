@@ -3,31 +3,28 @@
 //
 #include <boost/test/unit_test.hpp>
 #include "repositories/StorageContainer.h"
+#include "model/Bronze.h"
 
 struct TestSuiteRentRepositoryFixture {
     StorageContainerPtr storageContainer;
     RentRepositoryPtr rentRepository;
     AddressPtr  testAddress;
+    ClientTypePtr testClientType;
     ClientPtr testClient;
     VehiclePtr testVehicle;
     RentPtr testRent;
 
     TestSuiteRentRepositoryFixture(){
-        storageContainer = new StorageContainer();
+        storageContainer = std::make_shared<StorageContainer>();
         rentRepository = storageContainer->getRentRepository();
-        testAddress = new Address("London", "Accacia Avenue", "22");
-        testClient = new Client("Antonina", "Kozlowska", "111111", testAddress);
-        testVehicle = new Vehicle("EL 0000", 100);
-        testRent = new Rent(1, testClient, testVehicle, pt::not_a_date_time);
+        testAddress = std::make_shared<Address>("London", "Accacia Avenue", "22");
+        testClientType = std::make_shared<Bronze>();
+        testClient = std::make_shared<Client>("Antonina", "Kozlowska", "111111", testAddress, testClientType);
+        testVehicle = std::make_shared<Vehicle>("EL 0000", 100);
+        testRent = std::make_shared<Rent>(1, testClient, testVehicle, pt::not_a_date_time);
     }
 
-    ~TestSuiteRentRepositoryFixture(){
-        delete storageContainer;
-        delete testAddress;
-        delete testClient;
-        delete testVehicle;
-        delete testRent;
-    }
+    ~TestSuiteRentRepositoryFixture(){}
 };
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteRentRepository, TestSuiteRentRepositoryFixture)
@@ -46,8 +43,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRentRepository, TestSuiteRentRepositoryFixture
 
     BOOST_AUTO_TEST_CASE(RentRepositoryAddTest_Positive) {
         unsigned int startingSize = rentRepository->size();
-        rentRepository->add(new Rent(1, new Client("Antonina", "Kozlowska", "111111", new Address("London", "Accacia Avenue", "22")),
-                            new Vehicle("EL 1001", 100), pt::not_a_date_time));
+        rentRepository->add(testRent);
         BOOST_TEST(rentRepository->size() == startingSize + 1);
     }
 

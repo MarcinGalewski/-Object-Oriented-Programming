@@ -26,7 +26,21 @@ set(SOURCE_FILES
         src/model/Moped.cpp
         include/model/Moped.h
         src/model/Car.cpp
-        include/model/Car.h)
+        include/model/Car.h
+        src/model/ClientType.cpp
+        include/model/ClientType.h
+        src/model/Default.cpp
+        include/model/Default.h
+        src/model/Bronze.cpp
+        include/model/Bronze.h
+        src/model/Silver.cpp
+        include/model/Silver.h
+        src/model/Gold.cpp
+        include/model/Gold.h
+        src/model/Platinum.cpp
+        include/model/Platinum.h
+        src/model/Diamond.cpp
+        include/model/Diamond.h)
 
 #Utwórz bibliotekę typu STATIC, SHARED albo MODULE ze wskazanych źródeł
 add_library(Library ${SOURCE_FILES})

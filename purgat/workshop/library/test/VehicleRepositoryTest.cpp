@@ -10,15 +10,12 @@ struct TestSuiteVehicleRepositoryFixture {
     VehiclePtr testVehicle;
 
     TestSuiteVehicleRepositoryFixture(){
-        storageContainer = new StorageContainer();
+        storageContainer = std::make_shared<StorageContainer>();
         vehicleRepository = storageContainer->getVehicleRepository();
-        testVehicle = new Vehicle("EL 0000", 100);
+        testVehicle = std::make_shared<Vehicle>("EL 0000", 100);
     }
 
-    ~TestSuiteVehicleRepositoryFixture(){
-        delete storageContainer;
-        delete testVehicle;
-    }
+    ~TestSuiteVehicleRepositoryFixture(){}
 };
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteVehicleRepository, TestSuiteVehicleRepositoryFixture)
@@ -37,7 +34,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteVehicleRepository, TestSuiteVehicleRepositoryF
 
     BOOST_AUTO_TEST_CASE(VehicleRepositoryAddTest_Positive) {
         unsigned int startingSize = vehicleRepository->size();
-        vehicleRepository->add(new Vehicle("EL 1001", 100));
+        vehicleRepository->add(testVehicle);
         BOOST_TEST(vehicleRepository->size() == startingSize + 1);
     }
 

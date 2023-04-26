@@ -11,6 +11,7 @@
 #include "typedefs.h"
 #include "model/Address.h"
 #include "model/Rent.h"
+#include "model/ClientType.h"
 
 class Rent;
 
@@ -20,16 +21,14 @@ private:
     std::string lastName;
     std::string personalId;
     AddressPtr address;
-    std::vector<RentPtr> currentRents;
+    ClientTypePtr clientType;
 
 public:
-    Client(const std::string &firstName, const std::string &lastName, const std::string &personalId, AddressPtr address);
+    Client(const std::string &firstName, const std::string &lastName, const std::string &personalId, AddressPtr address, ClientTypePtr clientType);
 
     virtual ~Client();
 
     std::string getClientInfo() const;
-
-    std::string getFullClientInfo() const;
 
     const std::string &getFirstName() const;
 
@@ -39,7 +38,7 @@ public:
 
     AddressPtr getAddress() const;
 
-    std::vector<RentPtr> &getCurrentRents();
+    unsigned int getMaxVehicles() const;
 
     void setFirstName(const std::string &firstName);
 
@@ -47,7 +46,10 @@ public:
 
     void setAddress(AddressPtr address);
 
-    void addRent(RentPtr rent);
+    void setClientType(ClientTypePtr clientType);
+
+    double applyDiscount(double price) const;
+
 
 };
 

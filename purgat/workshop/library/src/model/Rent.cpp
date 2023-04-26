@@ -7,8 +7,6 @@
 
 Rent::Rent(unsigned int id, ClientPtr client, VehiclePtr vehicle, const pt::ptime &beginTime)
 : id(id), client(client), vehicle(vehicle), beginTime(beginTime) {
-    client->addRent(this);
-    vehicle->setRented(true);
     if(beginTime == pt::not_a_date_time)
         Rent::beginTime = pt::second_clock::local_time();
 }
@@ -59,7 +57,7 @@ unsigned int Rent::getRentDays() const {
 
 }
 
-unsigned int Rent::getRentCost() const {
+double Rent::getRentCost() const {
     return rentCost;
 }
 
@@ -72,11 +70,9 @@ void Rent::endRent(pt::ptime endTime) {
         else
             Rent::endTime = endTime;
 
-        vehicle->setRented(false);
-        client->getCurrentRents().erase(
-                remove(client->getCurrentRents().begin(), client->getCurrentRents().end(), this),
-                client->getCurrentRents().end());
-        rentCost = (getRentDays() * vehicle->getBasePrice());
+        rentCost = getRentDays() * vehicle->getBasePrice();
+        rentCost -= client->applyDiscount(rentCost);
+        if(rentCost < 0) rentCost = 0;
     }
 }
 

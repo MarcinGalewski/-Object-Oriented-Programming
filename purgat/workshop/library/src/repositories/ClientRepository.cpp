@@ -7,13 +7,7 @@
 
 ClientRepository::ClientRepository() {}
 
-ClientRepository::~ClientRepository() {
-    for(std::vector<ClientPtr>::iterator i = clientRepository.begin(); i != clientRepository.end();){
-        ClientPtr c = *i;
-        delete c;
-        clientRepository.erase(i);
-    }
-}
+ClientRepository::~ClientRepository() {}
 
 unsigned int ClientRepository::size() const {
     return clientRepository.size();

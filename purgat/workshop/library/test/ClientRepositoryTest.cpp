@@ -3,25 +3,24 @@
 //
 #include <boost/test/unit_test.hpp>
 #include "repositories/StorageContainer.h"
+#include "model/Bronze.h"
 
 struct TestSuiteClientRepositoryFixture {
     StorageContainerPtr storageContainer;
     ClientRepositoryPtr clientRepository;
     AddressPtr  testAddress;
+    ClientTypePtr testClientType;
     ClientPtr testClient;
 
     TestSuiteClientRepositoryFixture(){
-        storageContainer = new StorageContainer();
+        storageContainer = std::make_shared<StorageContainer>();
         clientRepository = storageContainer->getClientRepository();
-        testAddress = new Address("London", "Accacia Avenue", "22");
-        testClient = new Client("Antonina", "Kozlowska", "111111", testAddress);
+        testAddress = std::make_shared<Address>("London", "Accacia Avenue", "22");
+        testClientType = std::make_shared<Bronze>();
+        testClient = std::make_shared<Client>("Antonina", "Kozlowska", "111111", testAddress, testClientType);
     }
 
-    ~TestSuiteClientRepositoryFixture(){
-        delete storageContainer;
-        delete testAddress;
-        delete testClient;
-    }
+    ~TestSuiteClientRepositoryFixture(){}
 };
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteClientRepository, TestSuiteClientRepositoryFixture)
@@ -40,7 +39,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClientRepository, TestSuiteClientRepositoryFix
 
     BOOST_AUTO_TEST_CASE(ClientRepositoryAddTest_Positive) {
         unsigned int startingSize = clientRepository->size();
-        clientRepository->add(new Client("Antonina", "Kozlowska", "111111", new Address("London", "Accacia Avenue", "22")));
+        clientRepository->add(testClient);
         BOOST_TEST(clientRepository->size() == startingSize + 1);
     }
 

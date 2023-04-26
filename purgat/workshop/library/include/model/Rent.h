@@ -23,7 +23,7 @@ private:
     VehiclePtr vehicle;
     pt::ptime beginTime;
     pt::ptime endTime;
-    unsigned int rentCost = 0;
+    double rentCost = 0;
 
 public:
     Rent(unsigned int id, ClientPtr client, VehiclePtr vehicle, const pt::ptime &beginTime);
@@ -44,7 +44,7 @@ public:
 
     unsigned int getRentDays() const;
 
-    unsigned int getRentCost() const;
+    double getRentCost() const;
 
     void endRent(pt::ptime endTime);
 };

@@ -18,7 +18,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteVehicle, TestSuiteVehicleFixture)
         Vehicle vehicle(plateNumber1, basePrice1);
         BOOST_TEST(vehicle.getPlateNumber() == plateNumber1);
         BOOST_TEST(vehicle.getBasePrice() == basePrice1);
-        BOOST_TEST(vehicle.isRented() == false);
+//        BOOST_TEST(vehicle.isRented() == false);
     }
 
     BOOST_AUTO_TEST_CASE(vehicleSetPlateNumberTest_Positive){

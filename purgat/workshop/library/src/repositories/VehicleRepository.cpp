@@ -7,13 +7,7 @@
 
 VehicleRepository::VehicleRepository() {}
 
-VehicleRepository::~VehicleRepository() {
-    for(std::vector<VehiclePtr>::iterator i = vehicleRepository.begin(); i != vehicleRepository.end();){
-        VehiclePtr v = *i;
-        delete v;
-        vehicleRepository.erase(i);
-    }
-}
+VehicleRepository::~VehicleRepository() {}
 
 VehiclePtr VehicleRepository::get(unsigned int index) const {
     if(index >= size())
