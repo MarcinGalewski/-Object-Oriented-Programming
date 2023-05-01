@@ -14,10 +14,11 @@ struct TestSuiteVehicleFixture {
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteVehicle, TestSuiteVehicleFixture)
 
-    BOOST_AUTO_TEST_CASE(vehicleConstructorTest_Positive){
+    BOOST_AUTO_TEST_CASE(vehicleConstructorTest){
         Vehicle vehicle(plateNumber1, basePrice1);
         BOOST_TEST(vehicle.getPlateNumber() == plateNumber1);
         BOOST_TEST(vehicle.getBasePrice() == basePrice1);
+        BOOST_TEST(vehicle.isArchive() == false);
 //        BOOST_TEST(vehicle.isRented() == false);
     }
 
@@ -33,10 +34,16 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteVehicle, TestSuiteVehicleFixture)
         BOOST_TEST(vehicle.getPlateNumber() == plateNumber1);
     }
 
-    BOOST_AUTO_TEST_CASE(vehicleSetBasePriceTest_Positive){
+    BOOST_AUTO_TEST_CASE(vehicleSetBasePriceTest){
         Vehicle vehicle(plateNumber1, basePrice1);
         vehicle.setBasePrice(basePrice2);
         BOOST_TEST(vehicle.getBasePrice() == basePrice2);
+    }
+
+    BOOST_AUTO_TEST_CASE(vehicleSetArchiveTest){
+        Vehicle vehicle(plateNumber1, basePrice1);
+        vehicle.setArchive(true);
+        BOOST_TEST(vehicle.isArchive() == true);
     }
 
 BOOST_AUTO_TEST_SUITE_END()

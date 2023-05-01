@@ -11,7 +11,7 @@ struct TestSuiteBicycleFixture {
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteBicycle, TestSuiteBicycleFixture)
 
-    BOOST_AUTO_TEST_CASE(BicycleGetActualRentalPriceTest_Positive){
+    BOOST_AUTO_TEST_CASE(BicycleGetActualRentalPriceTest){
         Bicycle bicycle(plateNumber, basePrice);
         BOOST_TEST(bicycle.getActualRentalPrice() == basePrice);
     }

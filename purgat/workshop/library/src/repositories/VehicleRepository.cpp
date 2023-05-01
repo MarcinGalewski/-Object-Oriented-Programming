@@ -43,7 +43,7 @@ unsigned int VehicleRepository::size() const {
 
 std::vector<VehiclePtr> VehicleRepository::findBy(VehiclePredicate predicate) const {
     std::vector<VehiclePtr> found;
-    for (unsigned int i = 0; i < size(); i++) {
+    for(unsigned int i = 0; i < size(); i++){
         VehiclePtr vehicle = get(i);
         if (vehicle != nullptr && predicate(vehicle)) {
             found.push_back(vehicle);
@@ -54,4 +54,12 @@ std::vector<VehiclePtr> VehicleRepository::findBy(VehiclePredicate predicate) co
 
 std::vector<VehiclePtr> VehicleRepository::findAll() const {
     return findBy([](VehiclePtr vehicle){return true;});
+}
+
+VehiclePtr VehicleRepository::findByPlateNumber(std::string plateNumber) const {
+    std::vector<VehiclePtr> foundVehicles = findBy([&plateNumber](VehiclePtr vehicle){return vehicle->getPlateNumber() == plateNumber;});
+    if(!foundVehicles.empty())
+        return foundVehicles[0];
+    else
+        return nullptr;
 }

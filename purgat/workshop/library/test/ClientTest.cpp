@@ -33,12 +33,13 @@ struct TestSuiteClientFixture {
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
 
-    BOOST_AUTO_TEST_CASE(clientConstructorTest_Positive) {
+    BOOST_AUTO_TEST_CASE(clientConstructorTest) {
         Client client(testFirstName1, testLastName1, testPersonalID1, testAddress1, testClientType1);
         BOOST_TEST(client.getFirstName() == testFirstName1);
         BOOST_TEST(client.getLastName() == testLastName1);
         BOOST_TEST(client.getPersonalId() == testPersonalID1);
         BOOST_TEST(client.getAddress() == testAddress1);
+        BOOST_TEST(client.isArchive() == false);
     }
 
     BOOST_AUTO_TEST_CASE(clientSetFirstNameTest_Positive) {
@@ -87,6 +88,12 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
         Client client(testFirstName1, testLastName1, testPersonalID1, testAddress1, testClientType1);
         client.setClientType(nullptr);
         BOOST_TEST(client.getMaxVehicles() == 1);
+    }
+
+    BOOST_AUTO_TEST_CASE(clientSetArchiveTest){
+        Client client(testFirstName1, testLastName1, testPersonalID1, testAddress1, testClientType1);
+        client.setArchive(true);
+        BOOST_TEST(client.isArchive() == true);
     }
 
 BOOST_AUTO_TEST_SUITE_END()

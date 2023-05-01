@@ -40,7 +40,15 @@ set(SOURCE_FILES
         src/model/Platinum.cpp
         include/model/Platinum.h
         src/model/Diamond.cpp
-        include/model/Diamond.h)
+        include/model/Diamond.h
+        src/managers/LogicContainer.cpp
+        include/managers/LogicContainer.h
+        src/managers/ClientManager.cpp
+        include/managers/ClientManager.h
+        src/managers/VehicleManager.cpp
+        include/managers/VehicleManager.h
+        src/managers/RentManager.cpp
+        include/managers/RentManager.h)
 
 #Utwórz bibliotekę typu STATIC, SHARED albo MODULE ze wskazanych źródeł
 add_library(Library ${SOURCE_FILES})
@@ -62,12 +70,14 @@ set(SOURCE_TEST_FILES
         test/AddressTest.cpp
         test/VehicleTest.cpp
         test/RentTest.cpp
-        test/ClientRepositoryTest.cpp
-        test/RentRepositoryTest.cpp
-        test/VehicleRepositoryTest.cpp
+        test/repositories/ClientRepositoryTest.cpp
+        test/repositories/RentRepositoryTest.cpp
+        test/repositories/VehicleRepositoryTest.cpp
         test/BicycleTest.cpp
         test/MopedTest.cpp
-        test/CarTest.cpp) # tu w przyszłości będą dodawane pliki źródłowe testów
+        test/CarTest.cpp
+        test/managers/ClientManagerTest.cpp
+        test/managers/VehicleManagerTest.cpp test/managers/RentManagerTest.cpp) # tu w przyszłości będą dodawane pliki źródłowe testów
 
 add_executable (LibraryTest ${SOURCE_TEST_FILES})
 

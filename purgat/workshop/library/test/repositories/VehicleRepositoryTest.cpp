@@ -74,5 +74,14 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteVehicleRepository, TestSuiteVehicleRepositoryF
         BOOST_TEST(vehicleRepository->findAll().size() == 2);
     }
 
+    BOOST_AUTO_TEST_CASE(VehicleRepositoryFindByPlateNumberTest_Positive) {
+        vehicleRepository->add(testVehicle);
+        BOOST_TEST(vehicleRepository->findByPlateNumber(testVehicle->getPlateNumber())->getBasePrice()  == testVehicle->getBasePrice());
+    }
+
+    BOOST_AUTO_TEST_CASE(VehicleRepositoryFindByPlateNumberTest_Negative) {
+        BOOST_TEST(vehicleRepository->findByPlateNumber("000000") == nullptr);
+    }
+
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -80,7 +80,13 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClientRepository, TestSuiteClientRepositoryFix
         BOOST_TEST(clientRepository->findAll().size() == 2);
     }
 
+    BOOST_AUTO_TEST_CASE(ClientRepositoryFindByPersonalIdTest_Positive) {
+        clientRepository->add(testClient);
+        BOOST_TEST(clientRepository->findByPersonalId(testClient->getPersonalId())->getLastName() == testClient->getLastName());
+    }
 
-
+    BOOST_AUTO_TEST_CASE(ClientRepositoryFindByPersonalIdTest_Negative) {
+        BOOST_TEST( clientRepository->findByPersonalId("000000") == nullptr);
+    }
 
 BOOST_AUTO_TEST_SUITE_END()

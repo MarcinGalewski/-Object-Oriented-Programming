@@ -1,26 +1,28 @@
 #include <iostream>
 
-#include "repositories/StorageContainer.h"
+#include "typedefs.h"
+#include "managers/LogicContainer.h"
+#include "model/Client.h"
+#include "model/Default.h"
 #include "model/Moped.h"
-#include "model/Bronze.h"
 
 using namespace std;
+namespace gr = boost::gregorian;
 
 int main() {
-    StorageContainerPtr storageContainer = make_shared<StorageContainer>();
-    cout << storageContainer->getClientRepository()->report() << endl << endl;
-    cout << storageContainer->getVehicleRepository()->report() << endl << endl;
-    cout << storageContainer->getRentRepository()->report() << endl << endl;
+    LogicContainerPtr logicContainer = make_shared<LogicContainer>();
 
-    storageContainer->getRentRepository()->add(
-            make_shared<Rent>(1, make_shared<Client>("Antonina", "Kozlowska", "111111", make_shared<Address>("London", "Accacia Avenue", "22"),
-                                                     make_shared<Bronze>()),
-                     make_shared<Moped>("EL 1001", 100, 1500),pt::not_a_date_time));
+    AddressPtr address = std::make_shared<Address>("London", "Accacia Avenue", "22");
+    ClientTypePtr clientType = std::make_shared<Default>();
 
-    cout << "---------------------------------------------------------\n";
-    cout << storageContainer->getClientRepository()->report() << endl << endl;
-    cout << storageContainer->getVehicleRepository()->report() << endl << endl;
-    cout << storageContainer->getRentRepository()->report() << endl << endl;
+    ClientPtr client = logicContainer->getClientManager()->registerClient("Antonina", "Kozlowska", "111111", address, clientType);
+    VehiclePtr vehicle = logicContainer->getVehicleManager()->registerMoped("EL 1111", 150, 1500);
+    RentPtr rent = logicContainer->getRentManager()->rentVehicle(client, vehicle, pt::ptime(gr::date(2023, 1, 1), pt::hours(12) + pt::minutes(30)));
 
+    logicContainer->getRentManager()->returnVehicle(logicContainer->getRentManager()->getVehicleRent(make_shared<Moped>("EL 1010", 100, 1000))->getVehicle());
+
+    cout << logicContainer->getClientManager()->findClients([](ClientPtr){return true;}).size() << endl;
+    cout << logicContainer->getVehicleManager()->getVehicle("EL 0101")->getVehicleInfo() << endl;
+    cout << logicContainer->getRentManager()->findAllRents().size();
     return 0;
 }

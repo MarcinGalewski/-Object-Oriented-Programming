@@ -13,6 +13,7 @@ protected:
 
 private:
     std::string plateNumber;
+    bool archive = false;
 
 public:
     Vehicle(const std::string &plateNumber, unsigned int basePrice);
@@ -25,9 +26,13 @@ public:
 
     unsigned int getBasePrice() const;
 
+    bool isArchive() const;
+
     void setPlateNumber(const std::string &plateNumber);
 
     void setBasePrice(unsigned int basePrice);
+
+    void setArchive(bool archive);
 };
 
 

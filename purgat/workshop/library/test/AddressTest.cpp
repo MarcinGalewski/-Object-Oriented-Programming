@@ -18,7 +18,7 @@ struct TestSuiteAddressFixture {
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteAddress, TestSuiteAddressFixture)
 
-    BOOST_AUTO_TEST_CASE(addressConstructorTest_Positive){
+    BOOST_AUTO_TEST_CASE(addressConstructorTest){
         Address address(testCity1, testStreet1, testNumber1);
         BOOST_TEST(address.getCity() == testCity1);
         BOOST_TEST(address.getStreet() == testStreet1);

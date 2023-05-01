@@ -61,3 +61,11 @@ double Client::applyDiscount(double price) const {
     return clientType->applyDiscount(price);
 }
 
+bool Client::isArchive() const {
+    return archive;
+}
+
+void Client::setArchive(bool archive) {
+    Client::archive = archive;
+}
+

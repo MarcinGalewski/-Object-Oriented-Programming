@@ -32,6 +32,8 @@ public:
     std::vector<ClientPtr> findBy(ClientPredicate predicate) const;
 
     std::vector<ClientPtr> findAll() const;
+
+    ClientPtr findByPersonalId(std::string id) const;
 };
 
 

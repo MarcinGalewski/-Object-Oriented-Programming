@@ -32,6 +32,8 @@ public:
     std::vector<VehiclePtr> findBy(VehiclePredicate predicate) const;
 
     std::vector<VehiclePtr> findAll() const;
+
+    VehiclePtr findByPlateNumber(std::string plateNumber) const;
 };
 
 

@@ -23,6 +23,10 @@ unsigned int Vehicle::getBasePrice() const {
     return basePrice;
 }
 
+bool Vehicle::isArchive() const {
+    return archive;
+}
+
 void Vehicle::setPlateNumber(const std::string &plateNumber) {
     if(!plateNumber.empty())
     Vehicle::plateNumber = plateNumber;
@@ -31,6 +35,12 @@ void Vehicle::setPlateNumber(const std::string &plateNumber) {
 void Vehicle::setBasePrice(unsigned int basePrice) {
     Vehicle::basePrice = basePrice;
 }
+
+void Vehicle::setArchive(bool archive) {
+    Vehicle::archive = archive;
+}
+
+
 
 
 

@@ -42,7 +42,7 @@ std::string ClientRepository::report() {
 
 std::vector<ClientPtr> ClientRepository::findBy(ClientPredicate predicate) const {
     std::vector<ClientPtr> found;
-    for (unsigned int i = 0; i < size(); i++) {
+    for(unsigned int i = 0; i < size(); i++){
         ClientPtr client = get(i);
         if (client != nullptr && predicate(client)) {
             found.push_back(client);
@@ -53,6 +53,14 @@ std::vector<ClientPtr> ClientRepository::findBy(ClientPredicate predicate) const
 
 std::vector<ClientPtr> ClientRepository::findAll() const {
     return findBy([](ClientPtr client){return true;});
+}
+
+ClientPtr ClientRepository::findByPersonalId(std::string id) const {
+    std::vector<ClientPtr> foundClients = findBy([&id](ClientPtr client){return client->getPersonalId() == id;});
+    if(!foundClients.empty())
+        return foundClients[0];
+    else
+        return nullptr;
 }
 
 

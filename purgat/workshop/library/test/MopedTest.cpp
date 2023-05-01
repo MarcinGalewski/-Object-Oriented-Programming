@@ -14,18 +14,18 @@ struct TestSuiteMopedFixture {
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteMoped, TestSuiteMopedFixture)
 
-    BOOST_AUTO_TEST_CASE(MopedConstructorTest_Positive){
+    BOOST_AUTO_TEST_CASE(MopedConstructorTest){
         Moped moped(plateNumber, basePrice, engineDisplacement1);
         BOOST_TEST(moped.getEngineDisplacement() == engineDisplacement1);
     }
 
-    BOOST_AUTO_TEST_CASE(MopedSetEngineDisplacementTest_Positive){
+    BOOST_AUTO_TEST_CASE(MopedSetEngineDisplacementTest){
         Moped moped(plateNumber, basePrice, engineDisplacement1);
         moped.setEngineDisplacement(engineDisplacement2);
         BOOST_TEST(moped.getEngineDisplacement() == engineDisplacement2);
     }
 
-    BOOST_AUTO_TEST_CASE(MopedGetActualRentalPriceTest_Positive){
+    BOOST_AUTO_TEST_CASE(MopedGetActualRentalPriceTest){
         Moped moped(plateNumber, basePrice, engineDisplacement1);
         BOOST_TEST(moped.getActualRentalPrice() == moped.getBasePrice() * 1.25);
     }

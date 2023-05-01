@@ -16,24 +16,24 @@ struct TestSuiteCarFixture {
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteCar, TestSuiteCarFixture)
 
-    BOOST_AUTO_TEST_CASE(CarConstructorTest_Positive){
+    BOOST_AUTO_TEST_CASE(CarConstructorTest){
             Car car(plateNumber, basePrice, engineDisplacement1, segment1);
             BOOST_TEST(car.getEngineDisplacement() == engineDisplacement1);
     }
 
-    BOOST_AUTO_TEST_CASE(CarSetEngineDisplacementTest_Positive){
+    BOOST_AUTO_TEST_CASE(CarSetEngineDisplacementTest){
             Car car(plateNumber, basePrice, engineDisplacement1, segment1);
             car.setEngineDisplacement(engineDisplacement2);
             BOOST_TEST(car.getEngineDisplacement() == engineDisplacement2);
     }
 
-    BOOST_AUTO_TEST_CASE(CarSetSegmentTest_Positive){
+    BOOST_AUTO_TEST_CASE(CarSetSegmentTest){
         Car car(plateNumber, basePrice, engineDisplacement1, segment1);
         car.setSegment(segment2);
         BOOST_TEST(car.getSegment() == segment2);
     }
 
-    BOOST_AUTO_TEST_CASE(CarGetActualRentalPriceTest_Positive){
+    BOOST_AUTO_TEST_CASE(CarGetActualRentalPriceTest){
             Car car(plateNumber, basePrice, engineDisplacement1, segment1);
             BOOST_TEST(car.getActualRentalPrice() == car.getBasePrice() * 1.25 * (segment1 / 10));
     }

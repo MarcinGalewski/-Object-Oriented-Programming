@@ -52,7 +52,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRent, TestSuiteRentFixture)
         BOOST_TEST(rent.getBeginTime() == now);
     }
 
-//    BOOST_AUTO_TEST_CASE(rentSetRentedTest_Positive) {
+//    BOOST_AUTO_TEST_CASE(rentSetRentedTest) {
 //        Rent rent(testRentId, testClient, testVehicle, testTime1);
 //        BOOST_TEST(testVehicle->isRented() == true);
 //    }
