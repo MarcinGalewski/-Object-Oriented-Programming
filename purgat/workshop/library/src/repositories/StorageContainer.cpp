@@ -19,8 +19,8 @@ StorageContainer::StorageContainer(){
     vehicleRepository->add(std::make_shared<Vehicle>("EL 0000", 100));
     vehicleRepository->add(std::make_shared<Vehicle>("EL 1111", 200));
 
-    rentRepository->add(std::make_shared<Rent>(1, std::make_shared<Client>("Leon", "Zakrzewski", "010101", std::make_shared<Address>("London", "Accacia Avenue", "22"), std::make_shared<Default>()), std::make_shared<Vehicle>("EL 0000", 100), pt::not_a_date_time));
-    rentRepository->add(std::make_shared<Rent>(2, std::make_shared<Client>("Judyta", "Kozlowska", "101010", std::make_shared<Address>("London", "Rue Morgue", "13"), std::make_shared<Default>()), std::make_shared<Vehicle>("EL 1111", 200), pt::not_a_date_time));
+    rentRepository->add(std::make_shared<Rent>(boost::uuids::random_generator()(), std::make_shared<Client>("Leon", "Zakrzewski", "010101", std::make_shared<Address>("London", "Accacia Avenue", "22"), std::make_shared<Default>()), std::make_shared<Vehicle>("EL 0000", 100), pt::not_a_date_time));
+    rentRepository->add(std::make_shared<Rent>(boost::uuids::random_generator()(), std::make_shared<Client>("Judyta", "Kozlowska", "101010", std::make_shared<Address>("London", "Rue Morgue", "13"), std::make_shared<Default>()), std::make_shared<Vehicle>("EL 1111", 200), pt::not_a_date_time));
 }
 
 StorageContainer::~StorageContainer(){}

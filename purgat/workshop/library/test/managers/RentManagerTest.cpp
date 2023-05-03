@@ -7,6 +7,7 @@
 #include "model/Default.h"
 #include "model/Moped.h"
 #include "model/Bicycle.h"
+#include "exceptions/RentException.h"
 
 namespace gr = boost::gregorian;
 
@@ -73,7 +74,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRentManager, TestSuiteRentManagerFixture)
 
     BOOST_AUTO_TEST_CASE(RentManagerRentVehicle_Negative) {
         VehiclePtr vehicle = std::make_shared<Bicycle>("EL 0101", 20);
-        BOOST_TEST(rentManager->rentVehicle(testClient, vehicle, pt::not_a_date_time) == nullptr);
+        BOOST_CHECK_THROW(rentManager->rentVehicle(testClient, vehicle, pt::not_a_date_time), RentException);
     }
 
     BOOST_AUTO_TEST_CASE(RentManagerReturnVehicle) {

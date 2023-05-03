@@ -1,0 +1,16 @@
+//
+// Created by student on 02.05.23.
+//
+
+#ifndef CARRENTAL_RENTEXCEPTION_H
+#define CARRENTAL_RENTEXCEPTION_H
+
+#include <stdexcept>
+
+class RentException : std::logic_error {
+public:
+    explicit RentException(const std::string &arg);
+};
+
+
+#endif //CARRENTAL_RENTEXCEPTION_H

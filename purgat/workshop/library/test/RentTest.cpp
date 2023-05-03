@@ -8,7 +8,7 @@
 namespace gr = boost::gregorian;
 
 struct TestSuiteRentFixture {
-    const unsigned int testRentId = 1;
+    boost::uuids::uuid testRentId = boost::uuids::random_generator()();
     pt::ptime testTime1 = pt::ptime(gr::date(2023, 1, 1), pt::hours(12) + pt::minutes(30));
     pt::ptime testTime2 = pt::ptime(gr::date(2023, 1, 1), pt::hours(12) + pt::minutes(31));// 1 minute
     pt::ptime testTime3 = pt::ptime(gr::date(2023, 1, 2), pt::hours(12) + pt::minutes(30));// 24 hours

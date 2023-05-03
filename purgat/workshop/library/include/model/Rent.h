@@ -7,6 +7,9 @@
 
 #include "string"
 #include <boost/date_time.hpp>
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
 
 #include "typedefs.h"
 #include "model/Client.h"
@@ -18,7 +21,7 @@ class  Client;
 
 class Rent {
 private:
-    unsigned int id;
+    boost::uuids::uuid id;
     ClientPtr client;
     VehiclePtr vehicle;
     pt::ptime beginTime;
@@ -26,13 +29,13 @@ private:
     double rentCost = 0;
 
 public:
-    Rent(unsigned int id, ClientPtr client, VehiclePtr vehicle, const pt::ptime &beginTime);
+    Rent(boost::uuids::uuid id, ClientPtr client, VehiclePtr vehicle, const pt::ptime &beginTime);
 
     virtual ~Rent();
 
     std::string getRentInfo() const;
 
-    unsigned int getId() const;
+    const boost::uuids::uuid &getId() const;
 
     ClientPtr getClient() const;
 

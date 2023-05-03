@@ -21,8 +21,9 @@ int main() {
 
     logicContainer->getRentManager()->returnVehicle(logicContainer->getRentManager()->getVehicleRent(make_shared<Moped>("EL 1010", 100, 1000))->getVehicle());
 
-    cout << logicContainer->getClientManager()->findClients([](ClientPtr){return true;}).size() << endl;
+    cout << logicContainer->getClientManager()->findClients([](ClientPtr c){return true;}).size() << endl;
     cout << logicContainer->getVehicleManager()->getVehicle("EL 0101")->getVehicleInfo() << endl;
     cout << logicContainer->getRentManager()->findAllRents().size();
+
     return 0;
 }

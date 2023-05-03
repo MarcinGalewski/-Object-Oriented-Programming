@@ -5,6 +5,7 @@
 #include "model/Client.h"
 #include "model/Bronze.h"
 #include "model/Default.h"
+#include "exceptions/ClientException.h"
 
 struct TestSuiteClientFixture {
     const std::string testFirstName1 = "Leon";
@@ -33,13 +34,18 @@ struct TestSuiteClientFixture {
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
 
-    BOOST_AUTO_TEST_CASE(clientConstructorTest) {
+    BOOST_AUTO_TEST_CASE(clientConstructorTest_Positive) {
         Client client(testFirstName1, testLastName1, testPersonalID1, testAddress1, testClientType1);
         BOOST_TEST(client.getFirstName() == testFirstName1);
         BOOST_TEST(client.getLastName() == testLastName1);
         BOOST_TEST(client.getPersonalId() == testPersonalID1);
         BOOST_TEST(client.getAddress() == testAddress1);
         BOOST_TEST(client.isArchive() == false);
+    }
+
+    BOOST_AUTO_TEST_CASE(clientConstructorTest_Negative) {
+        BOOST_CHECK_THROW(Client client("", testLastName1, testPersonalID1, testAddress1, testClientType1), ClientException);
+        BOOST_CHECK_THROW(Client client(testFirstName1, testLastName1, testPersonalID1, nullptr, testClientType1), ClientException);
     }
 
     BOOST_AUTO_TEST_CASE(clientSetFirstNameTest_Positive) {

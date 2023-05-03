@@ -3,6 +3,7 @@
 //
 #include <boost/test/unit_test.hpp>
 #include "model/Vehicle.h"
+#include "exceptions/VehicleException.h"
 
 struct TestSuiteVehicleFixture {
     const std::string plateNumber1 = "EL 0000";
@@ -14,12 +15,16 @@ struct TestSuiteVehicleFixture {
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteVehicle, TestSuiteVehicleFixture)
 
-    BOOST_AUTO_TEST_CASE(vehicleConstructorTest){
+    BOOST_AUTO_TEST_CASE(vehicleConstructorTest_Positive){
         Vehicle vehicle(plateNumber1, basePrice1);
         BOOST_TEST(vehicle.getPlateNumber() == plateNumber1);
         BOOST_TEST(vehicle.getBasePrice() == basePrice1);
         BOOST_TEST(vehicle.isArchive() == false);
-//        BOOST_TEST(vehicle.isRented() == false);
+    }
+
+    BOOST_AUTO_TEST_CASE(vehicleConstructorTest_Negative){
+        BOOST_CHECK_THROW(Vehicle vehicle("", basePrice1), VehicleException);
+        BOOST_CHECK_THROW(Vehicle vehicle(plateNumber1, 0), VehicleException);
     }
 
     BOOST_AUTO_TEST_CASE(vehicleSetPlateNumberTest_Positive){
@@ -30,14 +35,18 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteVehicle, TestSuiteVehicleFixture)
 
     BOOST_AUTO_TEST_CASE(vehicleSetPlateNumberTest_Negative){
         Vehicle vehicle(plateNumber1, basePrice1);
-        vehicle.setPlateNumber("");
-        BOOST_TEST(vehicle.getPlateNumber() == plateNumber1);
+        BOOST_CHECK_THROW(vehicle.setPlateNumber(""), VehicleException);
     }
 
-    BOOST_AUTO_TEST_CASE(vehicleSetBasePriceTest){
+    BOOST_AUTO_TEST_CASE(vehicleSetBasePriceTest_Positive){
         Vehicle vehicle(plateNumber1, basePrice1);
         vehicle.setBasePrice(basePrice2);
         BOOST_TEST(vehicle.getBasePrice() == basePrice2);
+    }
+
+    BOOST_AUTO_TEST_CASE(vehicleSetBasePriceTest_Negative){
+        Vehicle vehicle(plateNumber1, basePrice1);
+        BOOST_CHECK_THROW(vehicle.setBasePrice(0), VehicleException);
     }
 
     BOOST_AUTO_TEST_CASE(vehicleSetArchiveTest){

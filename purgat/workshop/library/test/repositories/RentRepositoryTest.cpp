@@ -14,6 +14,8 @@ struct TestSuiteRentRepositoryFixture {
     VehiclePtr testVehicle;
     RentPtr testRent;
 
+    boost::uuids::uuid testId = boost::uuids::random_generator()();
+
     TestSuiteRentRepositoryFixture(){
         storageContainer = std::make_shared<StorageContainer>();
         rentRepository = storageContainer->getRentRepository();
@@ -21,7 +23,7 @@ struct TestSuiteRentRepositoryFixture {
         testClientType = std::make_shared<Bronze>();
         testClient = std::make_shared<Client>("Antonina", "Kozlowska", "111111", testAddress, testClientType);
         testVehicle = std::make_shared<Vehicle>("EL 0000", 100);
-        testRent = std::make_shared<Rent>(1, testClient, testVehicle, pt::not_a_date_time);
+        testRent = std::make_shared<Rent>(testId, testClient, testVehicle, pt::not_a_date_time);
     }
 
     ~TestSuiteRentRepositoryFixture(){}
@@ -67,14 +69,15 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRentRepository, TestSuiteRentRepositoryFixture
     }
 
     BOOST_AUTO_TEST_CASE(RentRepositoryFindByTest_OneItem) {
-        BOOST_TEST(rentRepository->findBy([](RentPtr rent){
-            return rent->getId() == 1;
+        rentRepository->add(testRent);
+        BOOST_TEST(rentRepository->findBy([this](RentPtr rent){
+            return rent->getId() == testId;
         }).size() == 1);
     }
 
     BOOST_AUTO_TEST_CASE(RentRepositoryFindByTest_ZeroItems) {
         BOOST_TEST(rentRepository->findBy([](RentPtr rent){
-            return rent->getId() == 3;
+            return rent->getId() == boost::uuids::random_generator()();
         }).size() == 0);
     }
 

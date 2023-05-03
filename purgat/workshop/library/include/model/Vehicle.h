@@ -22,7 +22,11 @@ public:
 
     virtual std::string getVehicleInfo() const;
 
+    virtual std::string getInfo() const;
+
     const std::string &getPlateNumber() const;
+
+    const std::string &getId() const;
 
     unsigned int getBasePrice() const;
 

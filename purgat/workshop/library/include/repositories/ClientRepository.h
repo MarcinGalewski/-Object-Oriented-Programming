@@ -5,35 +5,13 @@
 #ifndef CARRENTAL_CLIENTREPOSITORY_H
 #define CARRENTAL_CLIENTREPOSITORY_H
 
-#include "vector"
-
 #include "typedefs.h"
 #include "model/Client.h"
+#include "Repository.h"
 
-class ClientRepository {
-private:
-    std::vector<ClientPtr> clientRepository;
-
+class ClientRepository : public Repository<Client>{
 public:
-    ClientRepository();
-
-    virtual ~ClientRepository();
-
-    unsigned int size() const;
-
-    ClientPtr get(unsigned int index) const;
-
-    void add(ClientPtr client);
-
-    void remove(ClientPtr client);
-
-    std::string report();
-
-    std::vector<ClientPtr> findBy(ClientPredicate predicate) const;
-
-    std::vector<ClientPtr> findAll() const;
-
-    ClientPtr findByPersonalId(std::string id) const;
+    ClientPtr findByPersonalId(const std::string &id) const;
 };
 
 

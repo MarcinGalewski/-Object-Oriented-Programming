@@ -48,7 +48,15 @@ set(SOURCE_FILES
         src/managers/VehicleManager.cpp
         include/managers/VehicleManager.h
         src/managers/RentManager.cpp
-        include/managers/RentManager.h)
+        include/managers/RentManager.h
+        src/exceptions/ClientException.cpp
+        include/exceptions/ClientException.h
+        src/exceptions/VehicleException.cpp
+        include/exceptions/VehicleException.h
+        src/exceptions/RentException.cpp
+        include/exceptions/RentException.h
+        include/repositories/Repository.h
+        include/Functors.h)
 
 #Utwórz bibliotekę typu STATIC, SHARED albo MODULE ze wskazanych źródeł
 add_library(Library ${SOURCE_FILES})
@@ -77,7 +85,8 @@ set(SOURCE_TEST_FILES
         test/MopedTest.cpp
         test/CarTest.cpp
         test/managers/ClientManagerTest.cpp
-        test/managers/VehicleManagerTest.cpp test/managers/RentManagerTest.cpp) # tu w przyszłości będą dodawane pliki źródłowe testów
+        test/managers/VehicleManagerTest.cpp
+        test/managers/RentManagerTest.cpp) # tu w przyszłości będą dodawane pliki źródłowe testów
 
 add_executable (LibraryTest ${SOURCE_TEST_FILES})
 

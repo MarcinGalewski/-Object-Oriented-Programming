@@ -10,9 +10,14 @@
 class ClientType {
 public:
     virtual ~ClientType() = default;
+
     virtual unsigned int getMaxVehicles() const = 0;
+
     virtual double applyDiscount(double price) const = 0;
+
     virtual std::string getTypeInfo() const;
+
+    virtual std::string getInfo() const;
 };
 
 

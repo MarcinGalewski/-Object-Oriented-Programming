@@ -3,9 +3,13 @@
 //
 
 #include "model/MotorVehicle.h"
+#include "exceptions/VehicleException.h"
 
 MotorVehicle::MotorVehicle(const std::string &plateNumber, unsigned int basePrice, unsigned int engineDisplacement)
-        : Vehicle(plateNumber, basePrice), engineDisplacement(engineDisplacement) {}
+        : Vehicle(plateNumber, basePrice), engineDisplacement(engineDisplacement) {
+    if(engineDisplacement <= 0)
+        throw VehicleException("Negative number or zero");
+}
 
 MotorVehicle::~MotorVehicle() {
 

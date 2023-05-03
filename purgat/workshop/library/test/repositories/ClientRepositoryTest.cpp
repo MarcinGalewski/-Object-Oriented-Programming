@@ -4,6 +4,7 @@
 #include <boost/test/unit_test.hpp>
 #include "repositories/StorageContainer.h"
 #include "model/Bronze.h"
+#include "Functors.h"
 
 struct TestSuiteClientRepositoryFixture {
     StorageContainerPtr storageContainer;
@@ -63,17 +64,13 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClientRepository, TestSuiteClientRepositoryFix
     }
 
     BOOST_AUTO_TEST_CASE(ClientRepositoryFindByTest_OneItem) {
-        BOOST_TEST(clientRepository->findBy([](ClientPtr client){
-            std::string name = client->getLastName();
-            return name.compare("Zakrzewski") == 0;
-        }).size() == 1);
+        FirstNamePredicate predicate("Leon");
+        BOOST_TEST(clientRepository->findBy(predicate).size() == 1);
     }
 
     BOOST_AUTO_TEST_CASE(ClientRepositoryFindByTest_ZeroItems) {
-        BOOST_TEST(clientRepository->findBy([](ClientPtr client){
-            std::string name = client->getLastName();
-            return name.compare("") == 0;
-        }).size() == 0);
+        LastNamePredicate predicate("");
+        BOOST_TEST(clientRepository->findBy(predicate).size() == 0);
     }
 
     BOOST_AUTO_TEST_CASE(ClientRepositoryFindAllTest) {

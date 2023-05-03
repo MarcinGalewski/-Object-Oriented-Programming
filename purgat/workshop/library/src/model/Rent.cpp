@@ -5,7 +5,7 @@
 
 #include "model/Rent.h"
 
-Rent::Rent(unsigned int id, ClientPtr client, VehiclePtr vehicle, const pt::ptime &beginTime)
+Rent::Rent(boost::uuids::uuid id, ClientPtr client, VehiclePtr vehicle, const pt::ptime &beginTime)
 : id(id), client(client), vehicle(vehicle), beginTime(beginTime) {
     if(beginTime == pt::not_a_date_time)
         Rent::beginTime = pt::second_clock::local_time();
@@ -22,12 +22,12 @@ std::string Rent::getRentInfo() const {
     std::stringstream endTimeString;
     endTimeString << endTime;
 
-    return "Rent: \n" + std::to_string(id) +
+    return "Rent: \n" + boost::uuids::to_string(id) +
     " begin time: " + beginTimeString.str() + " end time: " + endTimeString.str() + "\n"
     + client->getClientInfo() + "\n" + vehicle->getVehicleInfo() + "\n";
 }
 
-unsigned int Rent::getId() const {
+const boost::uuids::uuid &Rent::getId() const {
     return id;
 }
 

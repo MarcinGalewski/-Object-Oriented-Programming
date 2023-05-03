@@ -9,6 +9,7 @@
 #include "model/Gold.h"
 #include "model/Platinum.h"
 #include "model/Diamond.h"
+#include "exceptions/RentException.h"
 
 RentManager::RentManager() {
     this->currentRents = std::make_shared<RentRepository>();
@@ -53,15 +54,18 @@ double RentManager::checkClientRentBalance(ClientPtr client) {
 }
 
 RentPtr RentManager::rentVehicle(ClientPtr client, VehiclePtr vehicle, pt::ptime beginTime) {
+    if(client->isArchive()) throw RentException("Client is archived");
+    if(vehicle->isArchive()) throw RentException("Vehicle is archived");
+    if(getAllClientRents(client).size() >= client->getMaxVehicles()) throw RentException("Client is over the rent limit");
+    if(getVehicleRent(vehicle)) throw RentException("Vehicle is already rented");
+
     if(!client->isArchive() && !vehicle->isArchive() &&
     getAllClientRents(client).size() < client->getMaxVehicles() &&
     !getVehicleRent(vehicle)){
-        srand(time(NULL));
-        RentPtr newRent = std::make_shared<Rent>(rand(), client, vehicle, beginTime);
+        RentPtr newRent = std::make_shared<Rent>(boost::uuids::random_generator()(), client, vehicle, beginTime);
         currentRents->add(newRent);
         return  newRent;
-    }else
-        return nullptr;
+    }
 }
 
 void RentManager::returnVehicle(VehiclePtr vehicle) {

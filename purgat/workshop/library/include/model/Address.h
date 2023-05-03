@@ -20,6 +20,8 @@ public:
 
     std::string getAddressInfo() const;
 
+    std::string getInfo() const;
+
     const std::string &getCity() const;
 
     const std::string &getStreet() const;

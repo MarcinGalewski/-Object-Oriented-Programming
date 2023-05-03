@@ -8,3 +8,7 @@ std::string ClientType::getTypeInfo() const {
     return "Client type: ";
 }
 
+std::string ClientType::getInfo() const {
+    return getTypeInfo();
+}
+

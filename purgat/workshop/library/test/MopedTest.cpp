@@ -3,6 +3,7 @@
 //
 #include <boost/test/unit_test.hpp>
 #include "model/Moped.h"
+#include "exceptions/VehicleException.h"
 
 struct TestSuiteMopedFixture {
     const std::string plateNumber = "EL 0000";
@@ -14,9 +15,13 @@ struct TestSuiteMopedFixture {
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteMoped, TestSuiteMopedFixture)
 
-    BOOST_AUTO_TEST_CASE(MopedConstructorTest){
+    BOOST_AUTO_TEST_CASE(MopedConstructorTest_Positive){
         Moped moped(plateNumber, basePrice, engineDisplacement1);
         BOOST_TEST(moped.getEngineDisplacement() == engineDisplacement1);
+    }
+
+    BOOST_AUTO_TEST_CASE(MopedConstructorTest_Negative){
+        BOOST_CHECK_THROW(Moped moped(plateNumber, basePrice, 0), VehicleException);
     }
 
     BOOST_AUTO_TEST_CASE(MopedSetEngineDisplacementTest){
