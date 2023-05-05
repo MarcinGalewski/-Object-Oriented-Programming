@@ -4,6 +4,7 @@
 #include "algorithm"
 
 #include "model/Rent.h"
+#include "exceptions/RentException.h"
 
 Rent::Rent(boost::uuids::uuid id, ClientPtr client, VehiclePtr vehicle, const pt::ptime &beginTime)
 : id(id), client(client), vehicle(vehicle), beginTime(beginTime) {

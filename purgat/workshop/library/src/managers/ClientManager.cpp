@@ -3,6 +3,7 @@
 //
 
 #include "managers/ClientManager.h"
+#include "exceptions/ClientException.h"
 
 ClientManager::ClientManager() {
     this->clientRepository = std::make_shared<ClientRepository>();
@@ -18,9 +19,14 @@ ClientPtr ClientManager::registerClient(const std::string &firstName, const std:
                                         const std::string &personalId, AddressPtr address, ClientTypePtr clientType) {
     ClientPtr check = clientRepository->findByPersonalId(personalId);
     if(!check){
-       ClientPtr client = std::make_shared<Client>(firstName, lastName, personalId, address, clientType);
-       clientRepository->add(client);
-       return client;
+        try {
+            check = std::make_shared<Client>(firstName, lastName, personalId, address, clientType);
+            clientRepository->add(check);
+        }catch(ClientException &exception) {
+            std::cout << std::endl << exception.what() << std::endl;
+            return ClientPtr();
+        }
+       return check;
     } else
         return check;
 }
@@ -33,7 +39,9 @@ void ClientManager::unregisterClient(ClientPtr client) {
 }
 
 std::vector<ClientPtr> ClientManager::findClients(ClientPredicate predicate) {
-    return clientRepository->findBy([predicate](ClientPtr client){return predicate(client) && !client->isArchive();});
+    return clientRepository->findBy([predicate](ClientPtr client){
+        return predicate(client) && !client->isArchive();
+    });
 }
 
 

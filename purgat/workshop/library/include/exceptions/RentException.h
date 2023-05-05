@@ -7,7 +7,7 @@
 
 #include <stdexcept>
 
-class RentException : std::logic_error {
+class RentException : public std::logic_error {
 public:
     explicit RentException(const std::string &arg);
 };

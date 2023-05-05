@@ -2,9 +2,11 @@
 // Created by student on 29.04.23.
 //
 
+#include <iostream>
 #include "managers/VehicleManager.h"
 #include "model/Bicycle.h"
 #include "model/Moped.h"
+#include "exceptions/VehicleException.h"
 
 VehicleManager::VehicleManager() {
     this->vehicleRepository = std::make_shared<VehicleRepository>();
@@ -19,9 +21,14 @@ VehiclePtr VehicleManager::getVehicle(std::string plateNumber) {
 VehiclePtr VehicleManager::registerBicycle(const std::string &plateNumber, unsigned int basePrice) {
     VehiclePtr check = getVehicle(plateNumber);
     if(!check){
-        VehiclePtr vehicle = std::make_shared<Bicycle>(plateNumber, basePrice);
-        vehicleRepository->add(vehicle);
-        return vehicle;
+        try {
+            check = std::make_shared<Bicycle>(plateNumber, basePrice);
+            vehicleRepository->add(check);
+        } catch(VehicleException &exception) {
+            std::cout << std::endl <<  exception.what() << std::endl;
+            return VehiclePtr();
+        }
+        return check;
     }else
         return check;
 }
@@ -30,9 +37,14 @@ VehiclePtr VehicleManager::registerMoped(const std::string &plateNumber,
                                          unsigned int basePrice, unsigned int engineDisplacement) {
     VehiclePtr check = getVehicle(plateNumber);
     if(!check){
-        VehiclePtr vehicle = std::make_shared<Moped>(plateNumber, basePrice, engineDisplacement);
-        vehicleRepository->add(vehicle);
-        return vehicle;
+        try {
+            check = std::make_shared<Moped>(plateNumber, basePrice, engineDisplacement);
+            vehicleRepository->add(check);
+        } catch(VehicleException &exception) {
+            std::cout << std::endl <<  exception.what() << std::endl;
+            return VehiclePtr();
+        }
+        return check;
     } else
         return check;
 }
@@ -42,9 +54,14 @@ VehiclePtr VehicleManager::registerCar(const std::string &plateNumber,
                                        SegmentType segment) {
     VehiclePtr check = getVehicle(plateNumber);
     if(!check){
-        VehiclePtr vehicle = std::make_shared<Car>(plateNumber, basePrice, engineDisplacement, segment);
-        vehicleRepository->add(vehicle);
-        return vehicle;
+        try {
+            check = std::make_shared<Car>(plateNumber, basePrice, engineDisplacement, segment);
+            vehicleRepository->add(check);
+            return check;
+        } catch(VehicleException &exception) {
+            std::cout << std::endl <<  exception.what() << std::endl;
+            return VehiclePtr();
+        }
     } else
         return check;
 }

@@ -4,6 +4,7 @@
 #include <boost/test/unit_test.hpp>
 #include "model/Rent.h"
 #include "model/Bronze.h"
+#include "exceptions/RentException.h"
 
 namespace gr = boost::gregorian;
 
@@ -34,6 +35,7 @@ struct TestSuiteRentFixture {
 
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteRent, TestSuiteRentFixture)
+
     BOOST_AUTO_TEST_CASE(rentConstructorTest_ProvidedBeginTime) {
         Rent rent(testRentId, testClient, testVehicle, testTime1);
         BOOST_TEST(rent.getId() == testRentId);

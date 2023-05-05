@@ -15,7 +15,7 @@ int main() {
     AddressPtr address = std::make_shared<Address>("London", "Accacia Avenue", "22");
     ClientTypePtr clientType = std::make_shared<Default>();
 
-    ClientPtr client = logicContainer->getClientManager()->registerClient("Antonina", "Kozlowska", "111111", address, clientType);
+    ClientPtr client = logicContainer->getClientManager()->registerClient("", "Kozlowska", "111111", address, clientType);
     VehiclePtr vehicle = logicContainer->getVehicleManager()->registerMoped("EL 1111", 150, 1500);
     RentPtr rent = logicContainer->getRentManager()->rentVehicle(client, vehicle, pt::ptime(gr::date(2023, 1, 1), pt::hours(12) + pt::minutes(30)));
 
