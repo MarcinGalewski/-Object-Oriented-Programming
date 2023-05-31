@@ -2,8 +2,17 @@ cmake_minimum_required(VERSION 3.4)
 project(Library)
 
 set(SOURCE_FILES
+        include/typedefs.h
         src/model/Client.cpp
-        include/model/Client.h)
+        include/model/Client.h
+        src/model/Address.cpp
+        include/model/Address.h
+        src/model/clientTypes/ClientType.cpp
+        include/model/clientTypes/ClientType.h
+        src/model/clientTypes/DefaultClient.cpp
+        include/model/clientTypes/DefaultClient.h
+        src/model/clientTypes/RegularClient.cpp
+        include/model/clientTypes/RegularClient.h)
 
 #Utwórz bibliotekę typu STATIC, SHARED albo MODULE ze wskazanych źródeł
 add_library(Library ${SOURCE_FILES})
