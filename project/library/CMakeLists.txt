@@ -12,7 +12,9 @@ set(SOURCE_FILES
         src/model/clientTypes/DefaultClient.cpp
         include/model/clientTypes/DefaultClient.h
         src/model/clientTypes/RegularClient.cpp
-        include/model/clientTypes/RegularClient.h)
+        include/model/clientTypes/RegularClient.h
+        src/exceptions/ClientException.cpp
+        include/exceptions/ClientException.h)
 
 #Utwórz bibliotekę typu STATIC, SHARED albo MODULE ze wskazanych źródeł
 add_library(Library ${SOURCE_FILES})
@@ -29,7 +31,9 @@ include_directories(
 )
 
 set(SOURCE_TEST_FILES
-        test/master.cpp test/ClientTest.cpp) # tu w przyszłości będą dodawane pliki źródłowe testów
+        test/master.cpp
+        test/ClientTest.cpp
+        test/AddressTest.cpp) # tu w przyszłości będą dodawane pliki źródłowe testów
 
 add_executable (LibraryTest ${SOURCE_TEST_FILES})
 

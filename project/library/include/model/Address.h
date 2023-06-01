@@ -23,6 +23,8 @@ public:
     const std::string &getStreet() const;
 
     const std::string &getNumber() const;
+
+    std::string getInfo() const;
 };
 
 

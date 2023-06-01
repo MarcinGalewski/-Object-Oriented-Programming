@@ -21,3 +21,7 @@ const std::string &Address::getStreet() const {
 const std::string &Address::getNumber() const {
     return number;
 }
+
+std::string Address::getInfo() const {
+    return "Address: " + city + ", " + street + ", number: " + number;
+}

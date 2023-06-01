@@ -14,7 +14,7 @@ private:
    std::string firstName;
    std::string lastName;
    std::string personalId;
-   bool isArchived;
+   bool archived = false;
    AddressPtr address;
    ClientTypePtr clientType;
 
@@ -30,21 +30,23 @@ public:
 
     const std::string &getPersonalId() const;
 
-    bool isArchived1() const;
+    bool isArchived() const;
 
     const AddressPtr &getAddress() const;
-
-    const ClientTypePtr &getClientType() const;
 
     void setFirstName(const std::string &firstName);
 
     void setLastName(const std::string &lastName);
 
-    void setIsArchived(bool isArchived);
+    void setArchived(bool archived);
 
     void setAddress(const AddressPtr &address);
 
     void setClientType(const ClientTypePtr &clientType);
+
+    double applyDiscount(double price);
+
+    std::string getInfo() const;
 };
 
 
