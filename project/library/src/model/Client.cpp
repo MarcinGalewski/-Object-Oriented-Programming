@@ -31,6 +31,11 @@ const std::string &Client::getPersonalId() const {
     return personalId;
 }
 
+const std::string &Client::getId() const {
+    return getPersonalId();
+}
+
+
 bool Client::isArchived() const {
     return archived;
 }

@@ -2,8 +2,8 @@
 // Created by student on 31.05.23.
 //
 
-#ifndef INTRODUCTIONPROJECT_CLIENT_H
-#define INTRODUCTIONPROJECT_CLIENT_H
+#ifndef HOTEL_CLIENT_H
+#define HOTEL_CLIENT_H
 
 #include "string"
 
@@ -30,6 +30,8 @@ public:
 
     const std::string &getPersonalId() const;
 
+    const std::string &getId() const;
+
     bool isArchived() const;
 
     const AddressPtr &getAddress() const;
@@ -50,4 +52,4 @@ public:
 };
 
 
-#endif //INTRODUCTIONPROJECT_CLIENT_H
+#endif //HOTEL_CLIENT_H
