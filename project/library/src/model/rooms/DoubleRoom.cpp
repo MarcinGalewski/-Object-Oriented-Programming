@@ -13,7 +13,14 @@ std::string DoubleRoom::getInfo() {
     return "DoubleRoom "+Room::getInfo()+" Room has "+ (bedType ? "QueenSize" : "KingSize")+ " bed";
 }
 
-DoubleRoom::DoubleRoom(const std::string &number, int price, int roomCapactiy, BedType bedType)
-    : Room(number, price,roomCapactiy), bedType(bedType) {}
+DoubleRoom::DoubleRoom(const std::string &number, int price, int roomCapacity, BedType bedType)
+    : Room(number, price, roomCapacity), bedType(bedType) {}
+
+int DoubleRoom::getActualPrice() {
+    if(bedType == QueenSize)
+        return price * 1.1;
+    if(bedType == KingSize)
+        return price * 1.2;
+}
 
 

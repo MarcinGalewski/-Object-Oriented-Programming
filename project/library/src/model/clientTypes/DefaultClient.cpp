@@ -5,7 +5,7 @@
 #include "model/clientTypes/DefaultClient.h"
 
 double DefaultClient::applyDiscount(double price) {
-    return price;
+    return 0;
 }
 
 std::string DefaultClient::getInfo() {

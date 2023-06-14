@@ -1,9 +1,13 @@
 #include <iostream>
-#include "managers/LogicContainer.h"
-#include "model/rooms/SingleRoom.h"
 #include "string"
+
+#include "managers/LogicContainer.h"
+#include "managers/ClientManager.h"
+#include "model/rooms/SingleRoom.h"
 #include "model/rooms/DoubleRoom.h"
 #include "model/rooms/Apartment.h"
+#include "model/Address.h"
+#include "model/clientTypes/DefaultClient.h"
 
 using namespace std;
 

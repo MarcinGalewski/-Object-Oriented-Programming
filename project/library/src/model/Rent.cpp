@@ -4,18 +4,21 @@
 
 #include "model/Rent.h"
 #include "model/Client.h"
+#include "model/rooms/Room.h"
 #include "exceptions/RentException.h"
 
 Rent::Rent(const boost::uuids::uuid &id, const ClientPtr &client, const RoomPtr &room, unsigned int numberOfDays) : id(
         id), client(client), room(room), numberOfDays(numberOfDays) {
     if(numberOfDays <= 0){
         throw RentException("Incorrect number of days");
-    }else{
-        calculateCost();
     }
-    if(client == nullptr || room == nullptr){
+    else if(client == nullptr || room == nullptr){
         throw RentException("Pointer is nullptr");
     }
+    else{
+        calculateCost();
+    }
+
 }
 
 Rent::~Rent() {
@@ -24,7 +27,7 @@ Rent::~Rent() {
 
 std::string Rent::getInfo() const {
     return "Rent: \n" + boost::uuids::to_string(id) + "\n"
-           + client->getInfo() + "\n" /* + room->getInfo() + "\n" */;
+           + client->getInfo() + "\n"  + room->getInfo() + "\n";
 }
 
 const boost::uuids::uuid &Rent::getId() const {
@@ -48,7 +51,7 @@ double Rent::getRentCost() const {
 }
 
 void Rent::calculateCost() {
-    //rentCost = room->getPrice() * numberOfDays;
+    rentCost = room->getActualPrice() * numberOfDays;
     rentCost -= client->applyDiscount(rentCost);
     if(rentCost < 0) rentCost = 0;
 }

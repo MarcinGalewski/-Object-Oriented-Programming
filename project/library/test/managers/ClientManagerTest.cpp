@@ -3,6 +3,7 @@
 //
 #include <boost/test/unit_test.hpp>
 #include "managers/LogicContainer.h"
+#include "managers/ClientManager.h"
 #include "model/Address.h"
 #include "model/clientTypes/RegularClient.h"
 

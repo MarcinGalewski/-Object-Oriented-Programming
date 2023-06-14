@@ -6,11 +6,12 @@
 #define HOTEL_STORAGECONTAINER_H
 
 #include "typedefs.h"
-#include "repositories/ClientRepository.h"
 
 class StorageContainer {
 private:
     ClientRepositoryPtr clientRepository;
+    RentRepositoryPtr rentRepository;
+    RoomRepositoryPtr roomRepository;
 
 public:
     StorageContainer();
@@ -18,6 +19,10 @@ public:
     virtual ~StorageContainer();
 
     ClientRepositoryPtr getClientRepository();
+
+    const RentRepositoryPtr &getRentRepository() const;
+
+    const RoomRepositoryPtr &getRoomRepository() const;
 };
 
 

@@ -18,6 +18,9 @@ public:
     Room(const std::string &number, int price,int roomCapacity);
 
     virtual std::string getInfo();
+
+    virtual int getActualPrice() = 0;
+
     virtual ~Room() = default;
 
     const std::string &getNumber() const;

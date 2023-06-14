@@ -26,7 +26,28 @@ set(SOURCE_FILES
         include/repositories/StorageContainer.h
         include/Functors.h
         src/model/Rent.cpp
-        include/model/Rent.h src/exceptions/RentException.cpp include/exceptions/RentException.h src/repositories/RentRepository.cpp include/repositories/RentRepository.h src/managers/RentManager.cpp include/managers/RentManager.h src/model/rooms/Room.cpp include/model/rooms/Room.h src/model/rooms/SingleRoom.cpp include/model/rooms/SingleRoom.h src/model/rooms/DoubleRoom.cpp include/model/rooms/DoubleRoom.h src/model/rooms/Apartment.cpp include/model/rooms/Apartment.h include/managers/RoomManager.h src/managers/RoomManager.cpp include/managers/RoomManager.h src/repositories/RoomRepository.cpp include/repositories/RoomRepository.h src/exceptions/RoomException.cpp include/exceptions/RoomException.h)
+        include/model/Rent.h
+        src/exceptions/RentException.cpp
+        include/exceptions/RentException.h
+        src/repositories/RentRepository.cpp
+        include/repositories/RentRepository.h
+        src/managers/RentManager.cpp
+        include/managers/RentManager.h
+        src/model/rooms/Room.cpp
+        include/model/rooms/Room.h
+        src/model/rooms/SingleRoom.cpp
+        include/model/rooms/SingleRoom.h
+        src/model/rooms/DoubleRoom.cpp
+        include/model/rooms/DoubleRoom.h
+        src/model/rooms/Apartment.cpp
+        include/model/rooms/Apartment.h
+        include/managers/RoomManager.h
+        src/managers/RoomManager.cpp
+        include/managers/RoomManager.h
+        src/repositories/RoomRepository.cpp
+        include/repositories/RoomRepository.h
+        src/exceptions/RoomException.cpp
+        include/exceptions/RoomException.h)
 
 #Utwórz bibliotekę typu STATIC, SHARED albo MODULE ze wskazanych źródeł
 add_library(Library ${SOURCE_FILES})
@@ -47,7 +68,10 @@ set(SOURCE_TEST_FILES
         test/ClientTest.cpp
         test/AddressTest.cpp
         test/repositories/ClientRepositoryTest.cpp
-        test/managers/ClientManagerTest.cpp) # tu w przyszłości będą dodawane pliki źródłowe testów
+        test/managers/ClientManagerTest.cpp
+        test/RentTest.cpp
+        test/repositories/RentRepositoryTest.cpp
+        test/managers/RentManagerTest.cpp) # tu w przyszłości będą dodawane pliki źródłowe testów
 
 add_executable (LibraryTest ${SOURCE_TEST_FILES})
 

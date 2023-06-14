@@ -6,11 +6,12 @@
 #define HOTEL_LOGICCONTAINER_H
 
 #include "typedefs.h"
-#include "managers/ClientManager.h"
 
 class LogicContainer {
 private:
     ClientManagerPtr clientManager;
+    RoomManagerPtr roomManager;
+    RentManagerPtr rentManager;
 
 public:
     LogicContainer();
@@ -18,6 +19,10 @@ public:
     virtual ~LogicContainer();
 
     const ClientManagerPtr &getClientManager() const;
+
+    const RoomManagerPtr &getRoomManager() const;
+
+    const RentManagerPtr &getRentManager() const;
 
 };
 

@@ -9,3 +9,7 @@ std::string SingleRoom::getInfo() {
 }
 
 SingleRoom::SingleRoom(const std::string &number, int price, int roomCapacity) : Room(number,price,roomCapacity) {}
+
+int SingleRoom::getActualPrice() {
+    return price;
+}

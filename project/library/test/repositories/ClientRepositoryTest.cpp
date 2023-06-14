@@ -6,6 +6,7 @@
 #include "typedefs.h"
 #include "Functors.h"
 #include "repositories/StorageContainer.h"
+#include "repositories/ClientRepository.h"
 #include "model/clientTypes/DefaultClient.h"
 #include "model/Address.h"
 

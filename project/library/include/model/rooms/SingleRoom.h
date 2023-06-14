@@ -11,7 +11,10 @@
 class SingleRoom : public Room{
 public:
     std::string getInfo() override;
+
     SingleRoom(const std::string &number, int price, int roomCapacity);
+
+    int getActualPrice() override;
 };
 
 

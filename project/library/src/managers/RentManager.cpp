@@ -4,7 +4,9 @@
 
 #include "managers/RentManager.h"
 #include "model/Client.h"
+#include "model/rooms/Room.h"
 #include "model/clientTypes/RegularClient.h"
+#include "exceptions/RentException.h"
 
 void RentManager::changeClientType(ClientPtr client) {
     client->setClientType(std::make_shared<RegularClient>());
@@ -25,7 +27,14 @@ std::vector<RentPtr> RentManager::getAllClientRents(ClientPtr client) {
 }
 
 RentPtr RentManager::rentRoom(ClientPtr client, RoomPtr room, unsigned int numberOfDays) {
-    return RentPtr();
+    if(client->isArchived()) throw RentException("Client is archived");
+    if(room->isArchived()) throw RentException("Room is archived");
+
+    if(!client->isArchived() && !room->isArchived()){
+        RentPtr newRent = std::make_shared<Rent>(boost::uuids::random_generator()(), client, room, numberOfDays);
+        rentRepository->add(newRent);
+        return  newRent;
+    }
 }
 
 RentPtr RentManager::getRent(boost::uuids::uuid id) {

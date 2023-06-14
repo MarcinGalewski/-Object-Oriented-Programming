@@ -17,8 +17,10 @@ private:
 public:
     DoubleRoom(const std::string &number, int price,int roomCapacity, BedType bedType);
 
-
     std::string getInfo() override;
+
+    int getActualPrice() override;
+
     ~DoubleRoom() override;
 };
 
