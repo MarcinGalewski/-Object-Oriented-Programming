@@ -15,7 +15,7 @@ class DoubleRoom : public Room{
 private:
     BedType bedType;
 public:
-    DoubleRoom(const std::string &number, int price,int roomCapactiy, bool inArchived, BedType bedType);
+    DoubleRoom(const std::string &number, int price,int roomCapacity, BedType bedType);
 
 
     std::string getInfo() override;

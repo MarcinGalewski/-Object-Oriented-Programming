@@ -4,8 +4,8 @@
 
 #include "model/rooms/Apartment.h"
 
-Apartment::Apartment(const std::string &number, int price,int roomCapactiy, bool inArchived, int numberOfAmenities )
-        : Room(number, price,roomCapactiy, inArchived), numberOfAmenities(numberOfAmenities) {}
+Apartment::Apartment(const std::string &number, int price,int roomCapactiy, int numberOfAmenities )
+        : Room(number, price,roomCapactiy), numberOfAmenities(numberOfAmenities) {}
 
 Apartment::~Apartment() {
 

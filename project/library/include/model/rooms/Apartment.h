@@ -12,7 +12,7 @@ class Apartment : public Room{
 private:
     int numberOfAmenities;
 public:
-    Apartment(const std::string &number, int price,int roomCapactiy, bool inArchived,  int numberOfAmenities);
+    Apartment(const std::string &number, int price,int roomCapactiy, int numberOfAmenities);
     std::string getInfo() override;
 
     ~Apartment() override;

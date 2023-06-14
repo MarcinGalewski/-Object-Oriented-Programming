@@ -26,7 +26,7 @@ set(SOURCE_FILES
         include/repositories/StorageContainer.h
         include/Functors.h
         src/model/Rent.cpp
-        include/model/Rent.h src/exceptions/RentException.cpp include/exceptions/RentException.h src/repositories/RentRepository.cpp include/repositories/RentRepository.h src/managers/RentManager.cpp include/managers/RentManager.h src/model/rooms/Room.cpp include/model/rooms/Room.h src/model/rooms/SingleRoom.cpp include/model/rooms/SingleRoom.h src/model/rooms/DoubleRoom.cpp include/model/rooms/DoubleRoom.h src/model/rooms/Apartment.cpp include/model/rooms/Apartment.h)
+        include/model/Rent.h src/exceptions/RentException.cpp include/exceptions/RentException.h src/repositories/RentRepository.cpp include/repositories/RentRepository.h src/managers/RentManager.cpp include/managers/RentManager.h src/model/rooms/Room.cpp include/model/rooms/Room.h src/model/rooms/SingleRoom.cpp include/model/rooms/SingleRoom.h src/model/rooms/DoubleRoom.cpp include/model/rooms/DoubleRoom.h src/model/rooms/Apartment.cpp include/model/rooms/Apartment.h include/managers/RoomManager.h src/managers/RoomManager.cpp include/managers/RoomManager.h src/repositories/RoomRepository.cpp include/repositories/RoomRepository.h src/exceptions/RoomException.cpp include/exceptions/RoomException.h)
 
 #Utwórz bibliotekę typu STATIC, SHARED albo MODULE ze wskazanych źródeł
 add_library(Library ${SOURCE_FILES})

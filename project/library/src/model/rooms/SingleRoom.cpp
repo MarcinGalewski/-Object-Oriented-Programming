@@ -8,7 +8,4 @@ std::string SingleRoom::getInfo() {
     return "SingleRoom "+Room::getInfo();
 }
 
-SingleRoom::SingleRoom(const std::string &number, int price, int roomCapactiy, bool inArchived) : Room(number,price,
-                                                                                                       roomCapactiy,
-                                                                                                       inArchived
-                                                                                                       ) {}
+SingleRoom::SingleRoom(const std::string &number, int price, int roomCapacity) : Room(number,price,roomCapacity) {}
