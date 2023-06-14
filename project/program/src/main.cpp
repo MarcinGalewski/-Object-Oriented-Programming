@@ -3,25 +3,13 @@
 
 #include "managers/LogicContainer.h"
 #include "managers/ClientManager.h"
-#include "model/rooms/SingleRoom.h"
-#include "model/rooms/DoubleRoom.h"
-#include "model/rooms/Apartment.h"
-#include "model/Address.h"
-#include "model/clientTypes/DefaultClient.h"
+#include "model/Hotel.h"
 
 using namespace std;
 
 int main() {
     LogicContainer l;
-    cout << l.getClientManager()->reportClients();
-    SingleRoom r1("221B", 120, 1);
-    DoubleRoom r2("121C", 200, 2,QueenSize);
-    DoubleRoom r3("53D", 250, 2,KingSize);
-    Apartment r4("321A", 1000, 4,5);
-    cout << r1.getInfo()<<endl;
-    cout << r2.getInfo()<<endl;
-    cout << r3.getInfo()<<endl;
-    cout << r4.getInfo()<<endl;
+    Hotel hotel("The Grand Hotel", l.getClientManager(), l.getRoomManager(), l.getRentManager());
 
     return 0;
 }

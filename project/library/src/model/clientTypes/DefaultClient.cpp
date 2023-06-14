@@ -9,5 +9,5 @@ double DefaultClient::applyDiscount(double price) {
 }
 
 std::string DefaultClient::getInfo() {
-    return ClientType::getInfo() + "Default\n";
+    return ClientType::getInfo() + "Default";
 }

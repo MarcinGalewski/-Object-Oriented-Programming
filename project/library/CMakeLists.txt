@@ -47,7 +47,9 @@ set(SOURCE_FILES
         src/repositories/RoomRepository.cpp
         include/repositories/RoomRepository.h
         src/exceptions/RoomException.cpp
-        include/exceptions/RoomException.h)
+        include/exceptions/RoomException.h
+        src/model/rooms/Hotel.cpp
+        include/model/Hotel.h)
 
 #Utwórz bibliotekę typu STATIC, SHARED albo MODULE ze wskazanych źródeł
 add_library(Library ${SOURCE_FILES})
