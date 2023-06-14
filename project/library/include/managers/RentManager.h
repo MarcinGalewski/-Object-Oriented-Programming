@@ -13,16 +13,16 @@ class RentManager {
 private:
     RentRepositoryPtr rentRepository;
 
-    void changeClientType(ClientPtr client);
+    void changeClientType(const ClientPtr& client);
 
 public:
     RentManager();
 
     virtual ~RentManager();
 
-    std::vector<RentPtr> getAllClientRents(ClientPtr client);
+    std::vector<RentPtr> getAllClientRents(const ClientPtr& client);
 
-    RentPtr rentRoom(ClientPtr client, RoomPtr room, unsigned int numberOfDays);
+    RentPtr rentRoom(const ClientPtr& client, const RoomPtr& room, unsigned int numberOfDays);
 
     RentPtr getRent(boost::uuids::uuid id);
 

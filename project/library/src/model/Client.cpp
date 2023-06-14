@@ -17,7 +17,7 @@ Client::Client(const std::string &firstName, const std::string &lastName, const 
         throw ClientException("Pointer is nullptr");
 }
 
-Client::~Client() {}
+Client::~Client() = default;
 
 const std::string &Client::getFirstName() const {
     return firstName;

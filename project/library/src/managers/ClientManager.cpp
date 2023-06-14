@@ -10,14 +10,14 @@ ClientManager::ClientManager() {
     this->clientRepository = std::make_shared<ClientRepository>();
 }
 
-ClientManager::~ClientManager() {}
+ClientManager::~ClientManager() = default;
 
-ClientPtr ClientManager::getClient(std::string id) {
+ClientPtr ClientManager::getClient(const std::string& id) {
     return clientRepository->findByPersonalId(id);
 }
 
 ClientPtr ClientManager::registerClient(const std::string &firstName, const std::string &lastName,
-                                        const std::string &personalId, AddressPtr address, ClientTypePtr clientType) {
+                                        const std::string &personalId, const AddressPtr& address, const ClientTypePtr& clientType) {
     ClientPtr check = clientRepository->findByPersonalId(personalId);
     if(!check){
         try {
@@ -32,15 +32,15 @@ ClientPtr ClientManager::registerClient(const std::string &firstName, const std:
         return check;
 }
 
-void ClientManager::unregisterClient(ClientPtr client) {
+void ClientManager::unregisterClient(const ClientPtr& client) {
     ClientPtr repositoryClient = getClient(client->getPersonalId());
     if(repositoryClient){
         repositoryClient->setArchived(true);
     }
 }
 
-std::vector<ClientPtr> ClientManager::findClients(ClientPredicate predicate) {
-    return clientRepository->findBy([predicate](ClientPtr client){
+std::vector<ClientPtr> ClientManager::findClients(const ClientPredicate& predicate) {
+    return clientRepository->findBy([predicate](const ClientPtr& client){
         return predicate(client) && !client->isArchived();
     });
 }

@@ -8,7 +8,7 @@
 #include "model/clientTypes/RegularClient.h"
 #include "exceptions/RentException.h"
 
-void RentManager::changeClientType(ClientPtr client) {
+void RentManager::changeClientType(const ClientPtr& client) {
     client->setClientType(std::make_shared<RegularClient>());
 }
 
@@ -16,17 +16,15 @@ RentManager::RentManager() {
     this->rentRepository = std::make_shared<RentRepository>();
 }
 
-RentManager::~RentManager() {
+RentManager::~RentManager() = default;
 
-}
-
-std::vector<RentPtr> RentManager::getAllClientRents(ClientPtr client) {
-    return rentRepository->findBy([client](RentPtr r){
+std::vector<RentPtr> RentManager::getAllClientRents(const ClientPtr& client) {
+    return rentRepository->findBy([client](const RentPtr& r){
         return r->getClient()->getPersonalId() == client->getPersonalId();
     });
 }
 
-RentPtr RentManager::rentRoom(ClientPtr client, RoomPtr room, unsigned int numberOfDays) {
+RentPtr RentManager::rentRoom(const ClientPtr& client, const RoomPtr& room, unsigned int numberOfDays) {
     if(client->isArchived()) throw RentException("Client is archived");
     if(room->isArchived()) throw RentException("Room is archived");
 
@@ -38,7 +36,7 @@ RentPtr RentManager::rentRoom(ClientPtr client, RoomPtr room, unsigned int numbe
 }
 
 RentPtr RentManager::getRent(boost::uuids::uuid id) {
-    return rentRepository->findBy([id](RentPtr r){
+    return rentRepository->findBy([id](const RentPtr& r){
         return r->getId() == id;
     })[0];
 }

@@ -59,9 +59,7 @@ RoomPtr RoomManager::registerApartment(const std::string& number, int price, int
 }
 
 RoomPtr RoomManager::getRoom(const std::string& number) {
-    return roomRepository->findBy([number](const RoomPtr& r){
-        return r->getId() == number;
-    })[0];
+    return roomRepository->findByRoomNumber(number);
 }
 
 std::vector<RoomPtr> RoomManager::findRooms(RoomPredicate predicate) {

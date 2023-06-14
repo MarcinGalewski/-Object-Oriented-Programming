@@ -28,7 +28,7 @@ struct TestSuiteRentManagerFixture {
         testRoom = std::make_shared<DoubleRoom>("14", 200, 3, QueenSize);
     }
 
-    ~TestSuiteRentManagerFixture(){}
+    ~TestSuiteRentManagerFixture()= default;
 };
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteRentManager, TestSuiteRentManagerFixture)
@@ -47,7 +47,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRentManager, TestSuiteRentManagerFixture)
 
     BOOST_AUTO_TEST_CASE(RentManagerFindRentTest) {
         rentManager->rentRoom(testClient, testRoom, testNumberOfDays);
-        BOOST_TEST(rentManager->findRents([](RentPtr r){return r->getRoom()->getNumber() == "12";}).size() == 1);
+        BOOST_TEST(rentManager->findRents([](const RentPtr &r){return r->getRoom()->getNumber() == "12";}).size() == 1);
     }
 
 

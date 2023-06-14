@@ -12,13 +12,16 @@ class Apartment : public Room{
 private:
     int numberOfAmenities;
 public:
-    Apartment(const std::string &number, int price, int roomCapacity, int numberOfAmenities);
-
+    Apartment(const std::string &number, int price,int roomCapacity, int numberOfAmenities);
     std::string getInfo() override;
 
-    int getActualPrice() override;
+    int getNumberOfAmenities() const;
+
+    void setNumberOfAmenities(int numberOfAmenities);
 
     ~Apartment() override;
+
+    int getActualPrice() override;
 };
 
 

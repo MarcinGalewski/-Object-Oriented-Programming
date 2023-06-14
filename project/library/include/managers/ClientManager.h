@@ -19,15 +19,15 @@ public:
 
     virtual ~ClientManager();
 
-    ClientPtr getClient(std::string id);
+    ClientPtr getClient(const std::string& id);
 
     ClientPtr registerClient(const std::string &firstName, const std::string &lastName,
-                             const std::string &personalId, AddressPtr address,
-                             ClientTypePtr clientType);
+                             const std::string &personalId, const AddressPtr& address,
+                             const ClientTypePtr& clientType);
 
-    void unregisterClient(ClientPtr client);
+    void unregisterClient(const ClientPtr& client);
 
-    std::vector<ClientPtr> findClients(ClientPredicate predicate);
+    std::vector<ClientPtr> findClients(const ClientPredicate& predicate);
 
     std::string reportClients();
 };

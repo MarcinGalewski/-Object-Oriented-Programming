@@ -21,9 +21,7 @@ Rent::Rent(const boost::uuids::uuid &id, const ClientPtr &client, const RoomPtr 
 
 }
 
-Rent::~Rent() {
-
-}
+Rent::~Rent() = default;
 
 std::string Rent::getInfo() const {
     return "Rent: \n" + boost::uuids::to_string(id) + "\n"

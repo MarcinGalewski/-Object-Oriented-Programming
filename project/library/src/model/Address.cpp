@@ -8,7 +8,7 @@ Address::Address(const std::string &city, const std::string &street, const std::
                                                                                                   street(street),
                                                                                                   number(number) {}
 
-Address::~Address() {}
+Address::~Address() = default;
 
 const std::string &Address::getCity() const {
     return city;
